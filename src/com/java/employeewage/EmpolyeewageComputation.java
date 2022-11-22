@@ -6,36 +6,38 @@ public class EmpolyeewageComputation {
 
 	public static void main(String[] args) {
 
+
 		int empWagePerHour = 20;
-		int fullDayPerHOur= 8;
-		int partTime =4;
-		double salary = 0;
-		double totalSalary=0;
-		double totalWorkingDays = 20;
-		
+		int fullDayHour = 8;
+		int halfDayHour = 4;
+		int salary = 0;
+		int totalSalary = 0;
+		int totalWorkingDays = 20;
+		int days =0;
+		int totalWorkingHours = 0;
 		System.out.println("welcome to the employee wage computation program");
 		Random random = new Random();
-		int empCheck = random.nextInt(3);
-		
-		for(int i=1; i<totalWorkingDays; i++)
+		while(days != totalWorkingDays && totalWorkingHours != 100)
 		{
-		switch(empCheck) {
-		
-		case 0:
-			System.out.println("Employee is Absent.");
-			break;
-		case 1:
-			System.out.println("Employee is Present.");
-		    salary = empWagePerHour * fullDayPerHOur;
-		    break;
-		case 2:
-			System.out.println("present for part time");
-			salary = empWagePerHour * partTime;
-		
-		}
-		System.out.println("Salary is: "+salary);
-		totalSalary = totalSalary + salary;
-		
+			
+			int empCheck = random.nextInt(3);
+			switch(empCheck)
+			{
+				case 0: System.out.println("Employee is Absent.");
+						break;	
+				case 1: System.out.println("Employee is Present.");
+						salary = empWagePerHour * fullDayHour ;
+						totalWorkingHours = totalWorkingHours + fullDayHour;
+						break;
+				case 2: System.out.println("Present for Half Day");
+						salary = empWagePerHour * halfDayHour ;
+						totalWorkingHours = totalWorkingHours + halfDayHour;
+			}
+				System.out.print("random: "+empCheck+"\t");
+				System.out.print("Working Hours: "+totalWorkingHours+"\t");
+				System.out.print("\tSalary is: "+salary+"\t");
+				totalSalary = totalSalary + salary;
+				days++;
 		}
 		System.out.println("Total Salary: "+totalSalary);
 	}
