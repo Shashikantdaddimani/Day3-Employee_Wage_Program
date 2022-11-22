@@ -14,22 +14,24 @@ public class EmpolyeewageComputation {
 		System.out.println("welcome to the employee wage computation program");
 		Random random = new Random();
 		int empCheck = random.nextInt(3);
-		if(empCheck == 1)
-		{
+		
+		switch(empCheck) {
+		
+		case 0:
+			System.out.println("Employee is Absent.");
+			break;
+		case 1:
 			System.out.println("Employee is Present.");
-			salary = empWagePerHour * fullDayPerHOur;
-		}
-		else if (empCheck == 2)
-		{
+		    salary = empWagePerHour * fullDayPerHOur;
+		    break;
+		case 2:
 			System.out.println("present for part time");
 			salary = empWagePerHour * partTime;
+		
 		}
-		else
-		{
-			System.out.println("Employee is Absent.");
-		}
+	
 		System.out.println("Daily Employee wage is:"+salary);
 	}
-	}
+}
 
 
