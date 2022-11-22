@@ -10,11 +10,15 @@ public class EmpolyeewageComputation {
 		int fullDayPerHOur= 8;
 		int partTime =4;
 		double salary = 0;
+		double totalSalary=0;
+		double totalWorkingDays = 20;
 		
 		System.out.println("welcome to the employee wage computation program");
 		Random random = new Random();
 		int empCheck = random.nextInt(3);
 		
+		for(int i=1; i<totalWorkingDays; i++)
+		{
 		switch(empCheck) {
 		
 		case 0:
@@ -29,9 +33,11 @@ public class EmpolyeewageComputation {
 			salary = empWagePerHour * partTime;
 		
 		}
-	
-		System.out.println("Daily Employee wage is:"+salary);
+		System.out.println("Salary is: "+salary);
+		totalSalary = totalSalary + salary;
+		
+		}
+		System.out.println("Total Salary: "+totalSalary);
 	}
 }
-
 
