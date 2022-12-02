@@ -1,6 +1,5 @@
 /**
- * Refactor the Code to write a Class Method to Compute
- *Employee Wage - Use Class Method and Class Variables
+ *Uc8-Ability to compute Employee Wage for multiple companies
  */
 package com.java.employeewage;
 
@@ -13,53 +12,82 @@ public class EmpolyeewageComputation {
 	/*
 	 * Declaring And initialization of variable
 	 */
-	static int empWagePerHour = 20;
-	static int fullDayHour = 8;
-	static int halfDayHour = 4;
-	static int salary = 0;
-	static int totalSalary = 0;
-	static int totalWorkingDays = 20;
-	static int days = 0;
-	static int totalWorkingHours = 0;
+
+	public static final int fullDayHour = 8;
+	public static final int halfDayHour = 4;
+
+	private final String companyName;
+	private final int employeeWagePerHr;
+	private final int workingHours;
+	private final int workingDays;
+	/*
+	 * Taking random object because Generating the random number
+	 */
+	static Random random = new Random();
 
 	/*
-	 * logic for checking empwage using the method
+	 * creating constructor
 	 */
-	static void ComputeEmpWage() {
-		/*
-		 * taking random object because Generating the random number
-		 */
-		Random random = new Random();
-		while (days != totalWorkingDays && totalWorkingHours != 100) {
+	public EmpolyeewageComputation(String companyName, int employeeWagePerHr, int workingHours, int workingDays) {
+		this.companyName = companyName;
+		this.employeeWagePerHr = employeeWagePerHr;
+		this.workingHours = workingHours;
+		this.workingDays = workingDays;
+	}
 
+	/*
+	 * logic for checking Employeewage using the method
+	 */
+	public int calculateWage() {
+
+		int salary = 0;
+		int totalSalary = 0;
+		int days = 0;
+		int totalWorkingHours = 0;
+
+		/*
+		 * logic for checking Employeewage using the method
+		 */
+		while (totalWorkingHours <= workingHours && days <= workingDays) {
+			days++;
 			int empCheck = random.nextInt(3);
 			/*
 			 * logic for checking conditions using switch case statement
 			 */
 			switch (empCheck) {
-			case 0:
-				System.out.println("Employee is Absent.");
-				break;
 			case 1:
-				System.out.println("Employee is Present.");
-				salary = empWagePerHour * fullDayHour;
+				System.out.println("Present for full Day");
+				salary = employeeWagePerHr * fullDayHour;
 				totalWorkingHours = totalWorkingHours + fullDayHour;
 				break;
+
 			case 2:
 				System.out.println("Present for Half Day");
-				salary = empWagePerHour * halfDayHour;
+				salary = employeeWagePerHr * halfDayHour;
 				totalWorkingHours = totalWorkingHours + halfDayHour;
+				break;
+			default:
+				System.out.println("Employee Abscent");
 			}
-			System.out.print("random: " + empCheck + "\t");
+			System.out.print("Day: " + days + "\t random: " + empCheck + "\t");
 			System.out.print("Working Hours: " + totalWorkingHours + "\t");
 			System.out.print("\tSalary is: " + salary + "\t");
 			totalSalary = totalSalary + salary;
-			days++;
+
 		}
-		System.out.println("Total Salary: " + totalSalary);
+		return totalWorkingHours * employeeWagePerHr;
 	}
 
-	void displayTotalSalary() {
-		System.out.println("Total Salary: " + totalSalary);
+	public static void main(String[] args) {
+		/*
+		 * EmpWageComputation dmart = new EmpWageComputation(companyName,
+		 * empWagePerHour, workingHours, workingDays);
+		 */
+		EmpolyeewageComputation dmart = new EmpolyeewageComputation("Dmart", 23, 90, 21);
+		EmpolyeewageComputation jioMart = new EmpolyeewageComputation("Walmart", 24, 109, 22);
+
+		System.out.println("Total employee's wage of Company: " + dmart.companyName + ": " + dmart.calculateWage());
+		System.out.println("Total employee's wage of Company: " + jioMart.companyName + ": " + jioMart.calculateWage());
+
 	}
 }
