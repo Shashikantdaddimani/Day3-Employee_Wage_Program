@@ -20,6 +20,7 @@ public class EmpolyeewageComputation {
 	private final int employeeWagePerHr;
 	private final int workingHours;
 	private final int workingDays;
+	int totalSalary;
 	/*
 	 * Taking random object because Generating the random number
 	 */
@@ -38,7 +39,7 @@ public class EmpolyeewageComputation {
 	/*
 	 * logic for checking Employeewage using the method
 	 */
-	public int calculateWage() {
+	public void calculateWage() {
 
 		int salary = 0;
 		int totalSalary = 0;
@@ -68,6 +69,7 @@ public class EmpolyeewageComputation {
 				break;
 			default:
 				System.out.println("Employee Abscent");
+				break;
 			}
 			System.out.print("Day: " + days + "\t random: " + empCheck + "\t");
 			System.out.print("Working Hours: " + totalWorkingHours + "\t");
@@ -75,7 +77,13 @@ public class EmpolyeewageComputation {
 			totalSalary = totalSalary + salary;
 
 		}
-		return totalWorkingHours * employeeWagePerHr;
+		//return totalWorkingHours * employeeWagePerHr;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Total Wage for Company: "+companyName+" is "+totalSalary;
 	}
 
 	public static void main(String[] args) {
@@ -86,8 +94,9 @@ public class EmpolyeewageComputation {
 		EmpolyeewageComputation dmart = new EmpolyeewageComputation("Dmart", 23, 90, 21);
 		EmpolyeewageComputation jioMart = new EmpolyeewageComputation("Walmart", 24, 109, 22);
 
-		System.out.println("Total employee's wage of Company: " + dmart.companyName + ": " + dmart.calculateWage());
-		System.out.println("Total employee's wage of Company: " + jioMart.companyName + ": " + jioMart.calculateWage());
-
+		dmart.calculateWage();
+		System.out.println(dmart);
+		jioMart.calculateWage();
+		System.out.println(jioMart);
 	}
 }
